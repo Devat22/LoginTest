@@ -20,7 +20,7 @@ class SessionManager(context:Context) {
     }
 
     public fun login(email: String, pass:String):Boolean{
-        if(email.equals("") || pass.equals("")) return false
+        if(!isLoggedIn()) return false
         val inEmail:String = sharedPreference.getString(KEY_EMAIL,"")
         val inPass:String = sharedPreference.getString(KEY_PASS, "")
         if(email.equals(inEmail) && pass.equals(inPass)) return true
