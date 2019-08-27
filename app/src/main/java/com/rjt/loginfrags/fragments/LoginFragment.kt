@@ -34,8 +34,7 @@ class LoginFragment : Fragment() {
             val pass = view.pass.text.toString()
             if(session.login(email, pass)){
                 val bundle = Bundle()
-                bundle.putString("name", session.sharedPreference.getString("name",""))
-
+                bundle.putString("name", session.getName())
                 this.activity?.let { it1 -> switch.toHome(it1, bundle) }
             }else{
                 Toast.makeText(this.context,"Wrong credentials",Toast.LENGTH_LONG).show()

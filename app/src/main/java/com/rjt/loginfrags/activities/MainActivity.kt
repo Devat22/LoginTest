@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         if(session.isLoggedIn()){
 
             val bundle = Bundle()
-            bundle.putString("name", session.sharedPreference.getString("name",""))
+            bundle.putString("name", session.getName())
             switch.toHome(this, bundle)
         }else{
             switch.toLogin(this)

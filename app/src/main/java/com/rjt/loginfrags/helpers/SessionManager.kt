@@ -46,4 +46,8 @@ class SessionManager(context:Context) {
 
     }
 
+    public fun getName():String{
+        return sharedPreference.getString(KEY_NAME,"")
+    }
+
 }
