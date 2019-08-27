@@ -30,7 +30,7 @@ class HomeFragment : Fragment() {
         // Inflate the layout for this fragment
         val view:View =  inflater.inflate(R.layout.fragment_home, container, false)
         val session = SessionManager(this.context!!)
-        view.name.append(session.sharedPreference.getString("name",""))
+        view.name.append(param1)
         view.logout.setOnClickListener{
 
             session.logout()

@@ -21,6 +21,7 @@ class MainActivity : AppCompatActivity() {
             val fr = HomeFragment()
             val bundle = Bundle()
             bundle.putString("name", session.sharedPreference.getString("name",""))
+            fr.arguments = bundle
             val tr = supportFragmentManager.beginTransaction()
             tr.replace(R.id.frc, fr)
             tr.commit()
