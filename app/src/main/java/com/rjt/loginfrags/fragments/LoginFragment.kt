@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.rjt.loginfrags.R
 import com.rjt.loginfrags.helpers.SessionManager
+import com.rjt.loginfrags.helpers.Switch
 import kotlinx.android.synthetic.main.fragment_login.view.*
 
 
@@ -25,29 +26,23 @@ class LoginFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val switch = Switch()
         val view:View = inflater.inflate(R.layout.fragment_login, container, false)
         view.login.setOnClickListener{
             val session:SessionManager = SessionManager(this.context!!)
             val email = view.email.text.toString()
             val pass = view.pass.text.toString()
             if(session.login(email, pass)){
-                val fr = HomeFragment()
                 val bundle = Bundle()
                 bundle.putString("name", session.sharedPreference.getString("name",""))
-                fr.arguments = bundle
-                val tr = activity?.supportFragmentManager?.beginTransaction()
-                tr?.replace(R.id.frc, fr)
-                tr?.commit()
+
+                this.activity?.let { it1 -> switch.toHome(it1, bundle) }
             }else{
                 Toast.makeText(this.context,"Wrong credentials",Toast.LENGTH_LONG).show()
             }
         }
         view.reghere.setOnClickListener{
-            val fr = RegisterFragment()
-
-            val tr = activity?.supportFragmentManager?.beginTransaction()
-            tr?.replace(R.id.frc, fr)
-            tr?.commit()
+            this.activity?.let { it1 -> switch.toRegister(it1) }
         }
         return view
     }

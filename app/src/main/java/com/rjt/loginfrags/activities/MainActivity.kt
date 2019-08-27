@@ -6,6 +6,7 @@ import com.rjt.loginfrags.R
 import com.rjt.loginfrags.fragments.HomeFragment
 import com.rjt.loginfrags.fragments.LoginFragment
 import com.rjt.loginfrags.helpers.SessionManager
+import com.rjt.loginfrags.helpers.Switch
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -16,20 +17,15 @@ class MainActivity : AppCompatActivity() {
         init()
     }
     fun init(){
+        val switch = Switch()
         val session:SessionManager = SessionManager(this)
         if(session.isLoggedIn()){
-            val fr = HomeFragment()
+
             val bundle = Bundle()
             bundle.putString("name", session.sharedPreference.getString("name",""))
-            fr.arguments = bundle
-            val tr = supportFragmentManager.beginTransaction()
-            tr.replace(R.id.frc, fr)
-            tr.commit()
+            switch.toHome(this, bundle)
         }else{
-            val fr = LoginFragment()
-            val tr = supportFragmentManager.beginTransaction()
-            tr.replace(R.id.frc, fr)
-            tr.commit()
+            switch.toLogin(this)
         }
     }
 }

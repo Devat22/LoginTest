@@ -9,6 +9,7 @@ import android.view.ViewGroup
 
 import com.rjt.loginfrags.R
 import com.rjt.loginfrags.helpers.SessionManager
+import com.rjt.loginfrags.helpers.Switch
 import kotlinx.android.synthetic.main.fragment_home.view.*
 
 /**
@@ -27,6 +28,7 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val switch = Switch()
         // Inflate the layout for this fragment
         val view:View =  inflater.inflate(R.layout.fragment_home, container, false)
         val session = SessionManager(this.context!!)
@@ -34,11 +36,7 @@ class HomeFragment : Fragment() {
         view.logout.setOnClickListener{
 
             session.logout()
-            val fr = LoginFragment()
-
-            val tr = activity?.supportFragmentManager?.beginTransaction()
-            tr?.replace(R.id.frc, fr)
-            tr?.commit()
+            this.activity?.let { it1 -> switch.toLogin(it1) }
         }
         return view
     }
