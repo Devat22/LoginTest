@@ -42,8 +42,8 @@ class SessionManager(context:Context) {
     }
 
     public fun logout(){
-        editor.clear()
-        editor.commit()
+        editor.putBoolean(KEY_ISLOGIN,false)
+
     }
 
 }
